@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Manual para Crianças Hiperativas e Ansiosas — 21 Dias para Mais Calma</title>
+<meta name="description" content="Manual interativo de 21 dias com atividades práticas para ajudar seu filho a ter mais calma, concentração e equilíbrio emocional." />
+
+<!-- ===================== TAILWIND CSS (CDN) ===================== -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Paleta personalizada: tons suaves e acolhedores (azul, verde menta, roxo claro)
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          calm:   { 50:'#eef4fb', 100:'#dce9f6', 300:'#9cc2ea', 500:'#5b8def', 600:'#4a76d4' }, // azul sereno
+          mint:   { 50:'#eafaf4', 100:'#d2f3e6', 300:'#86e3c4', 500:'#34c39a', 600:'#26a684' }, // verde menta
+          lilac:  { 50:'#f3effb', 100:'#e7ddf6', 300:'#c3aee9', 500:'#9b7ed8', 600:'#8366c4' }, // roxo claro
+          ink:    '#3a4a5c', // texto principal (slate suave)
+          mist:   '#f7f9fd', // fundo geral
+        },
+        fontFamily: {
+          display: ['Quicksand','ui-rounded','system-ui','sans-serif'],
+          body: ['Nunito','ui-sans-serif','system-ui','sans-serif'],
+        },
+        boxShadow: {
+          soft: '0 8px 30px -12px rgba(91,141,239,0.25)',
+          card: '0 4px 20px -8px rgba(58,74,92,0.15)',
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Fontes arredondadas e acolhedoras -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  html, body { -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Nunito', sans-serif; color: #3a4a5c; background: #f7f9fd; }
+  .font-display { font-family: 'Quicksand', sans-serif; }
+
+  /* Fundo com gradiente suave e tranquilizador */
+  .bg-aurora {
+    background:
+      radial-gradient(1100px 500px at 10% -10%, rgba(155,126,216,0.18), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(52,195,154,0.16), transparent 55%),
+      radial-gradient(800px 600px at 50% 120%, rgba(91,141,239,0.16), transparent 60%),
+      #f7f9fd;
+  }
+
+  /* Animação de entrada suave dos cards */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform:none;} }
+  .animate-in { animation: fadeUp .45s ease both; }
+
+  /* Esconde a barra de rolagem horizontal das fases */
+  .no-scrollbar::-webkit-scrollbar { display:none; }
+  .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+
+  /* Card expansível */
+  .collapse-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+
+  /* Respeita usuários que preferem menos movimento */
+  @media (prefers-reduced-motion: reduce){
+    .animate-in { animation: none; }
+    .collapse-body { transition:none; }
+  }
+
+  /* Anel de progresso (SVG) */
+  .ring-bg { stroke:#e3eaf5; }
+  .ring-fg { stroke:url(#gradRing); stroke-linecap:round; transition: stroke-dashoffset .6s ease; }
+</style>
+</head>
+
+<body class="bg-aurora min-h-screen pb-24 antialiased">
+
+<!-- ============================================================= -->
+<!-- =================== CONTEÚDO DAS TELAS ====================== -->
+<!-- Cada <section data-screen> é uma "aba". JS controla a visível. -->
+<!-- ============================================================= -->
+<main class="max-w-md mx-auto px-4">
+
+  <!-- ////////////////////// TELA: INÍCIO ////////////////////// -->
+  <section data-screen="inicio" class="pt-8">
+
+    <!-- Header com saudação carinhosa -->
+    <header class="text-center mb-6 animate-in">
+      <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur px-4 py-1.5 rounded-full shadow-card mb-4">
+        <span class="text-lilac-500">💜</span>
+        <span class="font-display font-600 text-sm text-ink">Olá, mamãe — bem-vinda</span>
+      </div>
+      <h1 class="font-display font-700 text-2xl leading-tight text-ink">
+        Manual para Crianças<br>Hiperativas e Ansiosas
+      </h1>
+      <p class="mt-2 text-sm text-ink/70 font-600">
+        21 Dias para Mais Calma, Concentração<br>e Equilíbrio Emocional
+      </p>
+    </header>
+
+    <!-- Card de progresso geral com anel -->
+    <div class="bg-white rounded-3xl shadow-soft p-6 mb-5 animate-in" style="animation-delay:.05s">
+      <div class="flex items-center gap-5">
+        <!-- Anel SVG -->
+        <div class="relative shrink-0">
+          <svg width="84" height="84" viewBox="0 0 84 84" class="-rotate-90">
+            <defs>
+              <linearGradient id="gradRing" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#5b8def"/>
+                <stop offset="50%" stop-color="#34c39a"/>
+                <stop offset="100%" stop-color="#9b7ed8"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="42" cy="42" r="36" fill="none" stroke-width="9"/>
+            <circle id="ringFg" class="ring-fg" cx="42" cy="42" r="36" fill="none" stroke-width="9"
+                    stroke-dasharray="226.2" stroke-dashoffset="226.2"/>
+          </svg>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span id="ringPct" class="font-display font-700 text-lg text-ink">0%</span>
+          </div>
+        </div>
+        <div class="flex-1">
+          <p class="font-display font-700 text-ink text-lg" id="dayLabel">Dia 1 de 21</p>
+          <p class="text-sm text-ink/60 font-600" id="daysSummary">0 concluídos · 21 restantes</p>
+          <p class="mt-2 text-xs text-ink/50 italic leading-snug">
+            "Cada respiro de calma que você ensina hoje vira um abrigo seguro amanhã."
+          </p>
+        </div>
+      </div>
+
+      <!-- Botão principal -->
+      <button onclick="continuarJornada()"
+        class="mt-5 w-full bg-gradient-to-r from-calm-500 via-mint-500 to-lilac-500 text-white font-display font-700 text-base py-4 rounded-2xl shadow-soft active:scale-[.98] transition">
+        ▶ Continuar Jornada
+      </button>
+    </div>
+
+    <!-- Próxima atividade (resumo do dia atual) -->
+    <div class="bg-white rounded-3xl shadow-card p-5 mb-5 animate-in" style="animation-delay:.1s">
+      <p class="text-xs font-700 text-mint-600 uppercase tracking-wide mb-1">Próxima atividade</p>
+      <p class="font-display font-700 text-ink text-lg leading-snug" id="nextDayTitle">Dia 1 — O cantinho da calma</p>
+      <p class="text-sm text-ink/60 font-600 mt-1" id="nextDayPhase">Fase 1 · Calma e Regulação Emocional</p>
+      <button onclick="goScreen('jornada')" class="mt-3 text-calm-600 font-700 text-sm">Ver atividade do dia →</button>
+    </div>
+
+    <!-- Atalhos para as seções -->
+    <div class="grid grid-cols-2 gap-3">
+      <button onclick="goScreen('aprender')" class="bg-calm-50 border border-calm-100 rounded-2xl p-4 text-left active:scale-[.98] transition animate-in" style="animation-delay:.15s">
+        <div class="text-2xl mb-1">📖</div>
+        <p class="font-display font-700 text-ink text-sm">Área de Aprendizado</p>
+        <p class="text-xs text-ink/60 font-600">Entenda seu filho</p>
+      </button>
+      <button onclick="goScreen('ferramentas')" class="bg-mint-50 border border-mint-100 rounded-2xl p-4 text-left active:scale-[.98] transition animate-in" style="animation-delay:.2s">
+        <div class="text-2xl mb-1">🧰</div>
+        <p class="font-display font-700 text-ink text-sm">Caixa de Ferramentas</p>
+        <p class="text-xs text-ink/60 font-600">Técnicas para agora</p>
+      </button>
+      <button onclick="goScreen('jornada')" class="bg-lilac-50 border border-lilac-100 rounded-2xl p-4 text-left active:scale-[.98] transition animate-in" style="animation-delay:.25s">
+        <div class="text-2xl mb-1">🗓️</div>
+        <p class="font-display font-700 text-ink text-sm">Programa de 21 Dias</p>
+        <p class="text-xs text-ink/60 font-600">Sua jornada</p>
+      </button>
+      <button onclick="goScreen('progresso')" class="bg-white border border-calm-100 rounded-2xl p-4 text-left active:scale-[.98] transition animate-in" style="animation-delay:.3s">
+        <div class="text-2xl mb-1">🌱</div>
+        <p class="font-display font-700 text-ink text-sm">Meu Progresso</p>
+        <p class="text-xs text-ink/60 font-600">Veja sua evolução</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- ////////////////////// TELA: APRENDER ////////////////////// -->
+  <section data-screen="aprender" class="pt-8 hidden">
+    <h2 class="font-display font-700 text-2xl text-ink mb-1">Área de Aprendizado</h2>
+    <p class="text-sm text-ink/60 font-600 mb-5">Comece por aqui, sem pressa 💜</p>
+    <div id="learnList" class="space-y-3"><!-- preenchido via JS --></div>
+  </section>
+
+  <!-- ////////////////////// TELA: JORNADA (21 DIAS) ////////////////////// -->
+  <section data-screen="jornada" class="pt-8 hidden">
+    <h2 class="font-display font-700 text-2xl text-ink mb-1">Programa de 21 Dias</h2>
+    <p class="text-sm text-ink/60 font-600 mb-4">Um passinho de cada vez. Marque o dia ao concluir.</p>
+
+    <!-- Seletor de fases -->
+    <div class="flex gap-2 mb-5 overflow-x-auto no-scrollbar pb-1">
+      <button data-phase="0" onclick="selectPhase(0)" class="phase-tab whitespace-nowrap px-4 py-2 rounded-full text-sm font-700 font-display">Fase 1 · Dias 1–7</button>
+      <button data-phase="1" onclick="selectPhase(1)" class="phase-tab whitespace-nowrap px-4 py-2 rounded-full text-sm font-700 font-display">Fase 2 · Dias 8–14</button>
+      <button data-phase="2" onclick="selectPhase(2)" class="phase-tab whitespace-nowrap px-4 py-2 rounded-full text-sm font-700 font-display">Fase 3 · Dias 15–21</button>
+    </div>
+
+    <!-- Descrição da fase -->
+    <div id="phaseIntro" class="rounded-2xl p-4 mb-4 text-sm font-600"></div>
+
+    <!-- Lista de dias -->
+    <div id="daysList" class="space-y-3"><!-- preenchido via JS --></div>
+  </section>
+
+  <!-- ////////////////////// TELA: FERRAMENTAS ////////////////////// -->
+  <section data-screen="ferramentas" class="pt-8 hidden">
+    <h2 class="font-display font-700 text-2xl text-ink mb-1">Caixa de Ferramentas</h2>
+    <p class="text-sm text-ink/60 font-600 mb-5">Técnicas rápidas para usar em qualquer momento difícil.</p>
+    <div id="toolsList" class="space-y-5"><!-- preenchido via JS --></div>
+  </section>
+
+  <!-- ////////////////////// TELA: PROGRESSO ////////////////////// -->
+  <section data-screen="progresso" class="pt-8 hidden">
+    <h2 class="font-display font-700 text-2xl text-ink mb-1">Meu Progresso</h2>
+    <p class="text-sm text-ink/60 font-600 mb-5" id="progressCheer">Você está cuidando, e isso já é amor.</p>
+
+    <!-- Estatísticas -->
+    <div class="grid grid-cols-2 gap-3 mb-5">
+      <div class="bg-white rounded-2xl shadow-card p-4 text-center">
+        <p id="statDone" class="font-display font-700 text-3xl text-mint-600">0</p>
+        <p class="text-xs text-ink/60 font-600 mt-1">Dias concluídos</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-card p-4 text-center">
+        <p id="statLeft" class="font-display font-700 text-3xl text-calm-600">21</p>
+        <p class="text-xs text-ink/60 font-600 mt-1">Dias restantes</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-card p-4 text-center">
+        <p id="statPct" class="font-display font-700 text-3xl text-lilac-500">0%</p>
+        <p class="text-xs text-ink/60 font-600 mt-1">Progresso total</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-card p-4 text-center">
+        <p id="statStreak" class="font-display font-700 text-3xl text-ink">0</p>
+        <p class="text-xs text-ink/60 font-600 mt-1">Sequência atual</p>
+      </div>
+    </div>
+
+    <!-- Evolução por fase -->
+    <div class="bg-white rounded-3xl shadow-card p-5 mb-5">
+      <p class="font-display font-700 text-ink mb-4">Evolução por fase</p>
+      <div id="weekBars" class="space-y-4"><!-- preenchido via JS --></div>
+    </div>
+
+    <!-- Conclusão e manutenção -->
+    <div id="closingCard" class="rounded-3xl p-5 mb-5 bg-gradient-to-br from-lilac-50 via-mint-50 to-calm-50 border border-lilac-100">
+      <p class="font-display font-700 text-ink text-lg mb-2">Conclusão e Manutenção 💜</p>
+      <p class="text-sm text-ink/70 font-600 leading-relaxed">
+        Chegar ao Dia 21 não é uma linha de chegada — é o começo de um novo jeito de conviver.
+        A calma que vocês construíram juntos vira hábito quando volta de leve no dia a dia.
+      </p>
+      <ul class="mt-3 space-y-2 text-sm text-ink/70 font-600">
+        <li class="flex gap-2"><span>🌿</span><span>Mantenha o <b>cantinho da calma</b> sempre disponível.</span></li>
+        <li class="flex gap-2"><span>🌬️</span><span>Use 1 exercício de respiração por dia, mesmo nos dias bons.</span></li>
+        <li class="flex gap-2"><span>📅</span><span>Preserve a rotina previsível de sono e refeições.</span></li>
+        <li class="flex gap-2"><span>🔁</span><span>Repita qualquer dia favorito sempre que sentir necessidade.</span></li>
+        <li class="flex gap-2"><span>👏</span><span>Celebre os pequenos progressos — eles são os que sustentam os grandes.</span></li>
+      </ul>
+    </div>
+
+    <!-- Reiniciar -->
+    <button onclick="resetProgress()" class="w-full text-center text-ink/40 font-600 text-sm py-3">
+      Reiniciar meu progresso
+    </button>
+  </section>
+
+  <!-- Aviso responsável (aparece em Aprender e Progresso via JS, mas fica no rodapé sempre) -->
+  <p class="text-[11px] text-ink/40 font-600 text-center leading-snug mt-6 px-2">
+    Este manual oferece atividades de apoio para o dia a dia e não substitui avaliação,
+    diagnóstico ou acompanhamento de profissionais de saúde (pediatra, psicólogo, neuropediatra).
+    Se os sinais forem intensos ou persistentes, busque orientação profissional. Você não está sozinha.
+  </p>
+</main>
+
+<!-- ============================================================= -->
+<!-- ===================== NAVEGAÇÃO INFERIOR ==================== -->
+<!-- ============================================================= -->
+<nav class="fixed bottom-0 inset-x-0 z-30 bg-white/90 backdrop-blur border-t border-calm-100">
+  <div class="max-w-md mx-auto grid grid-cols-5">
+    <button data-nav="inicio"      onclick="goScreen('inicio')"      class="nav-btn flex flex-col items-center gap-0.5 py-2.5 text-xs font-700">
+      <span class="text-lg">🏠</span>Início</button>
+    <button data-nav="aprender"    onclick="goScreen('aprender')"    class="nav-btn flex flex-col items-center gap-0.5 py-2.5 text-xs font-700">
+      <span class="text-lg">📖</span>Aprender</button>
+    <button data-nav="jornada"     onclick="goScreen('jornada')"     class="nav-btn flex flex-col items-center gap-0.5 py-2.5 text-xs font-700">
+      <span class="text-lg">🗓️</span>Jornada</button>
+    <button data-nav="ferramentas" onclick="goScreen('ferramentas')" class="nav-btn flex flex-col items-center gap-0.5 py-2.5 text-xs font-700">
+      <span class="text-lg">🧰</span>Ferramentas</button>
+    <button data-nav="progresso"   onclick="goScreen('progresso')"   class="nav-btn flex flex-col items-center gap-0.5 py-2.5 text-xs font-700">
+      <span class="text-lg">🌱</span>Progresso</button>
+  </div>
+</nav>
+
+<!-- ============================================================= -->
+<!-- ========================== DADOS ============================ -->
+<!-- Todo o conteúdo do manual fica aqui, separado da estrutura.  -->
+<!-- ============================================================= -->
+<script>
+/* ---------- ÁREA DE APRENDIZADO (cards expansíveis) ---------- */
+const LEARN = [
+  {
+    icon:"💜", tag:"Introdução",
+    title:"Você não está fazendo nada errado",
+    body:`Se o seu filho parece ter um motorzinho que nunca desliga, se preocupa com tudo, tem dificuldade de parar quieto ou explode com facilidade — respire. Isso não é falta de educação, e não é culpa sua.
+<br><br>
+Crianças hiperativas e ansiosas sentem o mundo num volume mais alto. O cérebro delas ainda está aprendendo a frear impulsos e a acalmar o corpo, e elas precisam de adultos calmos para aprender a se acalmar.
+<br><br>
+Este manual é um caminho gentil de 21 dias. Não é sobre "consertar" seu filho — é sobre dar a ele ferramentas de calma, e dar a você um pouco mais de leveza. Vá no seu ritmo. Um dia de cada vez já é o suficiente.`
+  },
+  {
+    icon:"🧠", tag:"Entendendo Seu Filho",
+    title:"Hiperatividade, ansiedade e TDAH: qual a diferença?",
+    body:`São coisas próximas, mas não iguais — e entender ajuda a escolher a resposta certa:
+<br><br>
+<b>Hiperatividade</b> é o corpo em movimento constante: dificuldade de ficar parado, agir antes de pensar, falar muito, energia que transborda. Costuma ser mais visível "por fora".
+<br><br>
+<b>Ansiedade</b> mora mais "por dentro": preocupação excessiva, medo de errar, apego, dores de barriga sem causa, dificuldade para dormir, agitação que vem do desconforto.
+<br><br>
+<b>TDAH</b> (Transtorno do Déficit de Atenção com Hiperatividade) é um diagnóstico clínico que envolve desatenção e/ou hiperatividade de forma persistente, e só pode ser feito por um profissional de saúde.
+<br><br>
+<i>Importante:</i> uma criança ansiosa pode parecer hiperativa, e vice-versa. As atividades deste manual ajudam nos três casos, porque todas trabalham regulação e calma. Mas se os sinais atrapalham muito o dia a dia, procure um pediatra, psicólogo ou neuropediatra.`
+  },
+  {
+    icon:"🔎", tag:"Entendendo Seu Filho",
+    title:"Sinais comuns para observar (sem rótulos)",
+    body:`Observar com carinho ajuda mais do que rotular. Veja se você reconhece alguns destes sinais:
+<br><br>
+<b>Mais para o lado da hiperatividade:</b><br>
+• Dificuldade de ficar sentado<br>
+• Mexe nas mãos/pés o tempo todo<br>
+• Interrompe, fala sem parar<br>
+• Age por impulso<br>
+• Parece "ligado na tomada"
+<br><br>
+<b>Mais para o lado da ansiedade:</b><br>
+• Preocupação com coisas do futuro<br>
+• Medo de se separar de você<br>
+• Choros por mudanças pequenas<br>
+• Queixas físicas (barriga, cabeça)<br>
+• Dificuldade para relaxar e dormir
+<br><br>
+Anote o que observa por alguns dias. Esse "mapa" é precioso — para você entender os gatilhos e, se precisar, para conversar com um profissional.`
+  },
+  {
+    icon:"🌬️", tag:"Como funciona",
+    title:"Por que 21 dias e como usar este manual",
+    body:`O cérebro aprende calma por repetição. Quando uma criança experimenta a mesma sequência segura todos os dias, ela começa a confiar que vai ficar tudo bem — e isso reduz a agitação e a ansiedade.
+<br><br>
+O programa tem 3 fases:
+<br>
+<b>Fase 1 (Dias 1–7):</b> ensinar o corpo a desacelerar.<br>
+<b>Fase 2 (Dias 8–14):</b> reduzir a ansiedade e canalizar a energia.<br>
+<b>Fase 3 (Dias 15–21):</b> construir foco e uma rotina que se sustenta sozinha.
+<br><br>
+Faça uma atividade por dia. Se um dia for corrido, tudo bem repetir uma atividade mais simples. O que importa é a constância gentil, não a perfeição.`
+  },
+  {
+    icon:"🤍", tag:"Dicas para os Pais",
+    title:"Como manter a paciência (você regula primeiro)",
+    body:`A criança não se acalma com um adulto agitado. Antes de acalmar seu filho, acalme a si mesma — nem que seja por 3 segundos.
+<br><br>
+• <b>Respire antes de reagir:</b> uma inspiração lenta antes de falar muda o tom de voz.<br>
+• <b>Abaixe a voz, não levante:</b> sussurrar costuma chamar mais atenção que gritar.<br>
+• <b>Nomeie o sentimento dele:</b> "Você está bravo porque queria continuar brincando." Ser compreendido acalma.<br>
+• <b>Não leve para o pessoal:</b> a explosão é do sistema nervoso imaturo, não contra você.<br>
+• <b>Cuide de você:</b> você não consegue dar de um copo vazio. Descanso e apoio não são luxo.`
+  },
+  {
+    icon:"🍎", tag:"Dicas para os Pais",
+    title:"Alimentação, sono e escola",
+    body:`<b>Alimentação:</b> reduza o excesso de açúcar e corantes, ofereça água ao longo do dia e refeições em horários parecidos. Alimentos com proteína no café da manhã ajudam a sustentar a atenção. (Mudanças na dieta com restrições devem ser orientadas por um profissional.)
+<br><br>
+<b>Rotina do sono:</b> sono ruim aumenta agitação e ansiedade. Crie um ritual calmo: luz baixa, sem telas 1 hora antes, banho morno, história, mesma hora todos os dias.
+<br><br>
+<b>Comunicação com a escola:</b> conte aos professores o que funciona em casa e peça parceria. Combine sinais discretos para a criança pedir uma pausa, e celebre junto os pequenos avanços. Uma criança apoiada nos dois ambientes evolui muito mais rápido.`
+  }
+];
+
+/* ---------- PROGRAMA DE 21 DIAS ---------- */
+const PHASES = [
+  { name:"Fase 1 — Calma e Regulação Emocional", range:"Dias 1–7",
+    intro:"Nesta primeira semana, o foco é ensinar o corpo a desacelerar e criar segurança. Nada de cobrança: é só plantar sementes de calma.",
+    color:"calm" },
+  { name:"Fase 2 — Reduzir Ansiedade e Hiperatividade", range:"Dias 8–14",
+    intro:"Agora canalizamos a energia com propósito e damos nome e lugar para a ansiedade. O corpo cansa do jeito certo, a mente alivia.",
+    color:"mint" },
+  { name:"Fase 3 — Construir Foco e Rotina Sustentável", range:"Dias 15–21",
+    intro:"Na reta final, transformamos a calma em hábito: foco em pequenas doses, autonomia e uma rotina que continua depois do Dia 21.",
+    color:"lilac" },
+];
+
+// 21 dias — cada um com título, explicação, atividade (passos), materiais e benefício
+const DAYS = [
+  // ===== FASE 1 =====
+  { phase:0, title:"O cantinho da calma",
+    why:"Toda criança agitada precisa de um lugar seguro para se reorganizar. Criar esse espaço hoje dá a ela um 'porto' para os dias difíceis.",
+    activity:["Escolham juntos um canto tranquilo da casa (um tapete, uma almofada bastam).","Deixem a criança decorar com 2 ou 3 objetos macios que ela goste.","Combinem: este é o cantinho da calma, não é castigo — é onde a gente vai quando o corpo precisa descansar.","Visitem o cantinho juntos 1 vez hoje, só para sentir como é bom."],
+    materials:"Almofada ou tapete, 1 cobertor macio, 1 objeto de conforto (pelúcia, livro).",
+    benefit:"Cria um refúgio físico de autorregulação que a criança poderá usar sozinha em momentos de crise." },
+
+  { phase:0, title:"Respiração da flor e da vela",
+    why:"A respiração lenta é o 'botão de desligar' da agitação. Transformar isso em brincadeira ensina a criança a se acalmar sozinha.",
+    activity:["Peça para a criança imaginar uma flor em uma mão e uma vela na outra.","Cheirar a flor: inspirar fundo pelo nariz (3 segundos).","Apagar a vela: soprar devagar pela boca (4 segundos).","Repitam 5 vezes, bem devagar, juntas."],
+    materials:"Nenhum — só as mãos e a imaginação.",
+    benefit:"Ativa o sistema nervoso de calma e dá uma ferramenta de respiração que cabe em qualquer lugar." },
+
+  { phase:0, title:"O termômetro das emoções",
+    why:"Crianças explodem quando não sabem nomear o que sentem. Dar nome às emoções é o primeiro passo para controlá-las.",
+    activity:["Desenhem juntos um termômetro com 4 níveis: calmo (verde), incomodado (amarelo), bravo (laranja), explodindo (vermelho).","Durante o dia, perguntem: 'Em que cor você está agora?'","Quando ela apontar, validem: 'Entendi, você está no amarelo.'","Combinem uma atividade de calma para cada cor."],
+    materials:"Papel e lápis de cor (ou imprima um modelo).",
+    benefit:"Desenvolve consciência emocional e dá vocabulário para a criança pedir ajuda antes de explodir." },
+
+  { phase:0, title:"Rotina visual previsível",
+    why:"A imprevisibilidade gera ansiedade. Saber o que vem a seguir traz uma calma enorme para crianças ansiosas e hiperativas.",
+    activity:["Desenhem ou imprimam os principais momentos do dia (acordar, escola, almoço, banho, dormir).","Montem um quadro na sequência, na altura da criança.","A cada etapa concluída, ela vira ou marca o cartãozinho.","Revisem o quadro juntas pela manhã."],
+    materials:"Cartolina, figuras impressas ou desenhadas, velcro ou ímã.",
+    benefit:"Reduz a ansiedade da transição e dá à criança senso de controle e previsibilidade." },
+
+  { phase:0, title:"O abraço apertado",
+    why:"A pressão profunda no corpo (como um abraço firme) acalma o sistema nervoso de forma quase mágica. É ciência, não só carinho.",
+    activity:["Ofereça um abraço bem firme (sem apertar demais), contando até 10.","Enrole a criança como um 'rolinho' num cobertor (cabeça de fora, sempre supervisionando).","Façam uma 'massagem de urso' nas costas com as mãos espalmadas.","Pergunte sempre se está gostoso e respeite o limite dela."],
+    materials:"Um cobertor e seus braços.",
+    benefit:"A pressão profunda libera calma no corpo e ajuda a criança a se sentir segura e contida." },
+
+  { phase:0, title:"Música e movimento lento",
+    why:"Sons suaves e movimentos lentos ensinam o corpo agitado a desacelerar sem que isso pareça uma ordem.",
+    activity:["Coloquem uma música calma e instrumental.","Dancem em câmera lenta, como se estivessem dentro da água.","Façam de conta que são folhas caindo devagar até o chão.","Terminem deitadas, ouvindo só a música por 1 minuto."],
+    materials:"Uma música tranquila e espaço para deitar.",
+    benefit:"Treina o corpo a alternar entre agitação e calma, fortalecendo a autorregulação." },
+
+  { phase:0, title:"Ritual de relaxamento antes de dormir",
+    why:"Encerrar a primeira semana com sono melhor muda tudo: criança que dorme bem fica menos ansiosa e mais concentrada.",
+    activity:["Apaguem as luzes fortes 1 hora antes de dormir (nada de telas).","Banho morno e pijama confortável.","Massagem leve nos pés ou nas mãos enquanto contam uma história curta.","Terminem com 3 respirações da flor e da vela (Dia 2)."],
+    materials:"Luz baixa, um livro de histórias, óleo ou creme (opcional).",
+    benefit:"Melhora a qualidade do sono e cria um fechamento previsível e seguro para o dia." },
+
+  // ===== FASE 2 =====
+  { phase:1, title:"Caça ao tesouro dos 5 sentidos",
+    why:"Quando a ansiedade aperta, voltar para os sentidos traz a criança de volta ao 'aqui e agora' e interrompe a espiral de preocupação.",
+    activity:["Façam juntas a técnica 5-4-3-2-1: encontrem 5 coisas que veem, 4 que podem tocar, 3 que ouvem, 2 que cheiram e 1 que sentem o gosto.","Transformem em caça ao tesouro pela casa.","Falem em voz alta cada descoberta.","Repitam sempre que perceberem a criança ansiosa."],
+    materials:"Nenhum — só o ambiente ao redor.",
+    benefit:"É uma técnica de 'aterramento' que corta a ansiedade rapidamente em qualquer lugar." },
+
+  { phase:1, title:"Gastar energia com propósito",
+    why:"Hiperatividade não se combate pedindo para parar — se canaliza. Um circuito de movimento descarrega energia do jeito certo.",
+    activity:["Montem um mini circuito: pular 10 vezes, correr até a parede, rolar no tapete, fazer 5 polichinelos.","A criança repete o circuito 2 ou 3 vezes.","Terminem sempre com algo lento: respirar ou deitar.","Façam de manhã ou antes de momentos que exigem concentração."],
+    materials:"Espaço livre; almofadas para o circuito (opcional).",
+    benefit:"Descarrega o excesso de energia e melhora a concentração nos momentos seguintes." },
+
+  { phase:1, title:"O frasco da calma",
+    why:"Observar o glitter assentando no frasco hipnotiza o cérebro e desacelera a respiração — uma ferramenta visual poderosa contra a agitação.",
+    activity:["Encham um pote transparente com água morna.","Misturem cola glitter ou purpurina e um pouco de glicerina.","Fechem bem (cole a tampa).","Quando a criança estiver agitada, balancem o pote e observem o glitter descer até parar — respirando junto."],
+    materials:"Pote com tampa, água, cola glitter/purpurina, glicerina (opcional).",
+    benefit:"Oferece um foco visual calmante e ensina a esperar a 'tempestade' passar." },
+
+  { phase:1, title:"Antecipar as transições",
+    why:"Mudar de atividade é um dos maiores gatilhos de crise. Avisar com antecedência evita explosões antes que comecem.",
+    activity:["Avise sempre antes de mudar de atividade: 'Em 5 minutos vamos guardar os brinquedos.'","Use um timer visual ou uma música como aviso.","Crie uma 'música de transição' divertida para guardar as coisas.","Elogie quando a transição acontecer com tranquilidade."],
+    materials:"Um timer (celular serve) ou uma música curta.",
+    benefit:"Reduz drasticamente as crises ligadas a mudanças e dá previsibilidade." },
+
+  { phase:1, title:"Brincadeiras de empurrar e puxar (propriocepção)",
+    why:"Trabalho 'pesado' para os músculos organiza o sistema nervoso e acalma profundamente — é o segredo terapêutico contra a agitação.",
+    activity:["Brinquem de empurrar a parede com força por 10 segundos (3 vezes).","Façam uma 'guerra' de empurrar almofadas.","Carreguem juntos algo com pesinho (uma sacola com livros) de um cômodo a outro.","Terminem com um abraço apertado."],
+    materials:"Parede, almofadas, uma sacola com peso leve.",
+    benefit:"A propriocepção regula o corpo agitado e gera calma duradoura." },
+
+  { phase:1, title:"A caixinha das preocupações",
+    why:"Crianças ansiosas carregam preocupações o dia todo. Dar um lugar e uma hora para elas alivia a mente o resto do tempo.",
+    activity:["Decorem juntas uma caixinha com tampa.","Quando surgir uma preocupação, a criança desenha ou dita e vocês colocam na caixa.","Combinem uma 'hora da preocupação' de 10 minutos por dia para abrir e conversar.","Fora desse horário, lembrem com carinho: 'Isso vai para a caixinha, depois a gente cuida.'"],
+    materials:"Uma caixa, papéis pequenos, lápis.",
+    benefit:"Contém a ansiedade em um momento específico, liberando o resto do dia." },
+
+  { phase:1, title:"Yoga dos animais",
+    why:"Posturas lentas de yoga unem movimento e respiração — perfeito para canalizar energia e acalmar ao mesmo tempo.",
+    activity:["Façam a postura do gato (de quatro, arqueando as costas) respirando fundo.","Postura do cachorro olhando para baixo, esticando o corpo.","Postura do sapo (agachada) e pulem como sapo.","Terminem deitadas como uma 'tartaruga descansando'."],
+    materials:"Um tapete ou espaço macio.",
+    benefit:"Combina descarga de energia com respiração e alongamento calmante." },
+
+  // ===== FASE 3 =====
+  { phase:2, title:"Tarefas em pedacinhos",
+    why:"Tarefas grandes paralisam crianças hiperativas e ansiosas. Quebrar em passos pequenos torna tudo possível e constrói foco.",
+    activity:["Escolham uma tarefa simples (arrumar os brinquedos).","Quebrem em 3 mini passos ('primeiro os carrinhos, depois os livros, depois as pelúcias').","Façam um passo de cada vez, comemorando cada conclusão.","Usem um timer curto: 'Vamos ver quanto a gente faz em 5 minutos!'"],
+    materials:"Um timer e a tarefa do dia.",
+    benefit:"Ensina foco em doses pequenas e reduz a ansiedade diante de tarefas." },
+
+  { phase:2, title:"Quadro de reconhecimento",
+    why:"Crianças agitadas ouvem muitos 'não'. Reconhecer o que deu certo reforça o comportamento positivo muito mais do que punir o errado.",
+    activity:["Montem um quadro simples com estrelinhas ou adesivos.","Escolham 2 ou 3 comportamentos para celebrar (respirou, esperou a vez, guardou os brinquedos).","Coloquem um adesivo a cada acerto, na hora.","Combinem uma comemoração simples ao juntar X estrelinhas (um passeio, um filme juntas)."],
+    materials:"Cartolina e adesivos ou carimbos.",
+    benefit:"Reforça comportamentos positivos e aumenta a autoestima da criança." },
+
+  { phase:2, title:"Tempo de foco (pomodoro infantil)",
+    why:"Concentração se treina como músculo. Pequenos blocos de foco com pausa ensinam a criança a sustentar a atenção sem se sobrecarregar.",
+    activity:["Escolham uma atividade que exija atenção (quebra-cabeça, desenho).","Combinem focar por 5 minutos (use timer).","Quando tocar, façam uma pausa de movimento de 2 minutos.","Repitam 2 ou 3 blocos, aumentando o tempo aos poucos nos próximos dias."],
+    materials:"Timer e uma atividade tranquila.",
+    benefit:"Aumenta gradualmente a capacidade de concentração de forma sustentável." },
+
+  { phase:2, title:"Jogos de atenção e memória",
+    why:"Brincar é a melhor forma de treinar o cérebro. Jogos de atenção fortalecem o foco sem que pareça obrigação.",
+    activity:["Joguem 'jogo da memória' com poucas cartas.","Brinquem de 'O que mudou?': mude 1 objeto na mesa e ela adivinha.","Façam 'Simão manda' (segue o comando só quando 'Simão manda').","Comemorem os acertos e riam dos erros juntas."],
+    materials:"Cartas de memória ou objetos do dia a dia.",
+    benefit:"Treina atenção, memória de trabalho e autocontrole de forma lúdica." },
+
+  { phase:2, title:"Rotina da manhã independente",
+    why:"Autonomia reduz conflitos e ansiedade. Quando a criança sabe sua sequência, a manhã flui sem brigas.",
+    activity:["Listem juntas 4 ou 5 passos da manhã (levantar, escovar dentes, vestir, café).","Façam um quadro ilustrado dessa sequência.","Deixem a criança conduzir, marcando cada passo.","Elogiem cada etapa feita com autonomia."],
+    materials:"Quadro de rotina ilustrado (reaproveite o do Dia 4).",
+    benefit:"Constrói independência e reduz o estresse das manhãs." },
+
+  { phase:2, title:"Rotina da noite tranquila",
+    why:"Fechar o dia com calma consolida tudo o que vocês construíram e garante um sono reparador para o dia seguinte.",
+    activity:["Repitam o ritual: luz baixa, banho, pijama, história.","Façam um 'momento de gratidão': cada uma fala 1 coisa boa do dia.","Façam respiração da flor e da vela.","Terminem com o abraço apertado e uma frase de segurança: 'Você está seguro, amanhã a gente continua.'"],
+    materials:"Luz baixa, história, seus braços.",
+    benefit:"Sela o dia com segurança emocional e prepara um sono tranquilo." },
+
+  { phase:2, title:"Celebrar a jornada e plano de manutenção",
+    why:"Vocês chegaram ao fim de 21 dias! Reconhecer o caminho percorrido fortalece a criança e mantém os ganhos vivos.",
+    activity:["Façam juntas uma 'festinha' simples para celebrar os 21 dias.","Relembrem as atividades favoritas — escolham 3 para continuar usando sempre.","Montem um 'plano de calma' com as 3 ferramentas preferidas para os dias difíceis.","Tirem uma foto ou façam um desenho desse marco. Vocês merecem! 💜"],
+    materials:"Vontade de comemorar e as ferramentas favoritas.",
+    benefit:"Consolida o aprendizado, celebra o esforço e cria um plano para manter a calma a longo prazo." },
+];
+
+/* ---------- CAIXA DE FERRAMENTAS ---------- */
+const TOOLS = [
+  { group:"🌬️ Exercícios de respiração", color:"calm", items:[
+    { title:"Respiração da flor e da vela", text:"Cheire a flor (inspire 3s pelo nariz) e apague a vela (sopre 4s pela boca). Repita 5 vezes. Ótima para qualquer lugar." },
+    { title:"Respiração do balão", text:"Coloque as mãos na barriga e encha como um balão ao inspirar; esvazie devagar ao soltar. Mostra à criança onde a calma 'mora'." },
+    { title:"Respiração quadrada", text:"Inspire 4s, segure 4s, solte 4s, segure 4s. Desenhe um quadrado no ar com o dedo enquanto faz. Ideal para crianças maiores." },
+  ]},
+  { group:"✋ Atividades sensoriais", color:"mint", items:[
+    { title:"Frasco da calma", text:"Balance o pote de glitter e observem juntas o brilho assentar. O foco visual desacelera a respiração naturalmente." },
+    { title:"Massinha ou slime", text:"Amassar, apertar e esticar massa de modelar acalma as mãos e a mente. Perfeito para momentos de espera." },
+    { title:"Luz baixa e som suave", text:"Diminua as luzes e coloque um som tranquilo. Reduzir o estímulo do ambiente ajuda o corpo agitado a desacelerar." },
+  ]},
+  { group:"💪 Jogos de propriocepção", color:"lilac", items:[
+    { title:"Empurrar a parede", text:"Empurre a parede com força por 10 segundos, 3 vezes. O esforço muscular 'reorganiza' e acalma o sistema nervoso." },
+    { title:"Carregar peso", text:"Peça para a criança carregar uma sacola com livros de um cômodo a outro. Trabalho pesado = calma profunda." },
+    { title:"Pular como sapo / animais", text:"Pular, agachar e imitar animais descarrega energia e organiza o corpo antes de momentos que exigem foco." },
+  ]},
+  { group:"⚡ Técnicas rápidas para a crise", color:"calm", items:[
+    { title:"5-4-3-2-1 (aterramento)", text:"5 coisas que vê, 4 que toca, 3 que ouve, 2 que cheira, 1 que sente o gosto. Tira a criança da espiral de ansiedade." },
+    { title:"Ir ao cantinho da calma", text:"Convide (sem castigo) a criança a ir ao espaço seguro para se reorganizar. Vá junto se ela precisar." },
+    { title:"Nomear o sentimento", text:"'Você está bravo porque acabou a brincadeira.' Sentir-se compreendido reduz a intensidade da emoção quase na hora." },
+  ]},
+];
+</script>
+
+<!-- ============================================================= -->
+<!-- ===================== LÓGICA / INTERAÇÃO ==================== -->
+<!-- ============================================================= -->
+<script>
+const STORAGE_KEY = 'manualCalma21d';
+const TOTAL = DAYS.length; // 21
+
+// Estado salvo no navegador (localStorage)
+let state = loadState();
+
+function loadState(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  } catch(e){}
+  return { done: {}, currentScreen:'inicio', currentPhase:0 };
+}
+function saveState(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
+}
+
+// Quantos dias concluídos
+function countDone(){ return Object.values(state.done).filter(Boolean).length; }
+
+// Próximo dia não concluído (1-index); se todos feitos, retorna 21
+function nextDayIndex(){
+  for(let i=0;i<TOTAL;i++){ if(!state.done[i]) return i; }
+  return TOTAL-1;
+}
+
+// Sequência atual (dias seguidos concluídos a partir do dia 1)
+function currentStreak(){
+  let s=0;
+  for(let i=0;i<TOTAL;i++){ if(state.done[i]) s++; else break; }
+  return s;
+}
+
+/* ---------- NAVEGAÇÃO ENTRE TELAS ---------- */
+function goScreen(name){
+  document.querySelectorAll('[data-screen]').forEach(s=>{
+    s.classList.toggle('hidden', s.dataset.screen !== name);
+  });
+  // Atualiza estado dos botões da nav
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    const active = b.dataset.nav === name;
+    b.classList.toggle('text-calm-600', active);
+    b.classList.toggle('text-ink/40', !active);
+  });
+  state.currentScreen = name; saveState();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Botão "Continuar Jornada" → vai para a jornada na fase do próximo dia
+function continuarJornada(){
+  const idx = nextDayIndex();
+  state.currentPhase = DAYS[idx].phase;
+  goScreen('jornada');
+  selectPhase(state.currentPhase);
+  // pequeno destaque ao card do próximo dia
+  setTimeout(()=>{
+    const el = document.getElementById('day-'+idx);
+    if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); openCollapse(el); }
+  }, 150);
+}
+
+/* ---------- RENDER: ANEL E RESUMOS (TELA INÍCIO) ---------- */
+function renderHome(){
+  const done = countDone();
+  const pct = Math.round((done/TOTAL)*100);
+  const circ = 2*Math.PI*36; // 226.2
+
+  document.getElementById('ringFg').style.strokeDashoffset = circ - (circ*pct/100);
+  document.getElementById('ringPct').textContent = pct + '%';
+
+  const nextIdx = nextDayIndex();
+  document.getElementById('dayLabel').textContent = `Dia ${Math.min(done+1,TOTAL)} de ${TOTAL}`;
+  document.getElementById('daysSummary').textContent = `${done} concluídos · ${TOTAL-done} restantes`;
+  document.getElementById('nextDayTitle').textContent = `Dia ${nextIdx+1} — ${DAYS[nextIdx].title}`;
+  document.getElementById('nextDayPhase').textContent = `${PHASES[DAYS[nextIdx].phase].name}`;
+}
+
+/* ---------- RENDER: ÁREA DE APRENDIZADO ---------- */
+function renderLearn(){
+  const wrap = document.getElementById('learnList');
+  wrap.innerHTML = LEARN.map((c,i)=>`
+    <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+      <button onclick="toggleCollapse(this)" class="w-full flex items-center gap-3 p-4 text-left">
+        <span class="text-2xl shrink-0">${c.icon}</span>
+        <span class="flex-1">
+          <span class="block text-[11px] font-700 uppercase tracking-wide text-calm-600">${c.tag}</span>
+          <span class="block font-display font-700 text-ink leading-snug">${c.title}</span>
+        </span>
+        <span class="chev text-ink/30 text-xl transition-transform">⌄</span>
+      </button>
+      <div class="collapse-body"><div class="px-4 pb-4 text-sm text-ink/70 font-600 leading-relaxed">${c.body}</div></div>
+    </div>`).join('');
+}
+
+/* ---------- RENDER: JORNADA (DIAS) ---------- */
+function selectPhase(p){
+  state.currentPhase = p; saveState();
+  // estilo das abas de fase
+  document.querySelectorAll('.phase-tab').forEach(t=>{
+    const active = Number(t.dataset.phase)===p;
+    t.className = `phase-tab whitespace-nowrap px-4 py-2 rounded-full text-sm font-700 font-display ${
+      active ? 'bg-gradient-to-r from-calm-500 to-lilac-500 text-white shadow-soft'
+             : 'bg-white text-ink/60 border border-calm-100'}`;
+  });
+  // intro da fase
+  const ph = PHASES[p];
+  const intro = document.getElementById('phaseIntro');
+  intro.className = `rounded-2xl p-4 mb-4 text-sm font-600 bg-${ph.color}-50 border border-${ph.color}-100 text-ink/70`;
+  intro.innerHTML = `<b class="font-display text-ink">${ph.name}</b> · ${ph.range}<br>${ph.intro}`;
+  renderDays(p);
+}
+
+function renderDays(p){
+  const wrap = document.getElementById('daysList');
+  const list = DAYS.map((d,i)=>({...d, idx:i})).filter(d=>d.phase===p);
+  wrap.innerHTML = list.map(d=>{
+    const checked = !!state.done[d.idx];
+    return `
+    <div id="day-${d.idx}" class="bg-white rounded-2xl shadow-card overflow-hidden ${checked?'ring-2 ring-mint-300':''}">
+      <button onclick="toggleCollapse(this)" class="w-full flex items-center gap-3 p-4 text-left">
+        <span class="shrink-0 w-10 h-10 rounded-xl bg-${PHASES[p].color}-50 flex items-center justify-center font-display font-700 text-${PHASES[p].color}-600">${d.idx+1}</span>
+        <span class="flex-1">
+          <span class="block text-[11px] font-700 uppercase tracking-wide text-${PHASES[p].color}-600">Dia ${d.idx+1}</span>
+          <span class="block font-display font-700 text-ink leading-snug">${d.title}</span>
+        </span>
+        ${checked?'<span class="text-mint-500 text-xl shrink-0">✓</span>':'<span class="chev text-ink/30 text-xl transition-transform">⌄</span>'}
+      </button>
+      <div class="collapse-body">
+        <div class="px-4 pb-4 space-y-3 text-sm">
+          <p class="text-ink/70 font-600 leading-relaxed">${d.why}</p>
+
+          <div class="bg-calm-50 rounded-xl p-3">
+            <p class="font-700 text-calm-600 text-xs uppercase mb-1.5">Atividade principal</p>
+            <ol class="list-decimal list-inside space-y-1 text-ink/70 font-600">
+              ${d.activity.map(a=>`<li>${a}</li>`).join('')}
+            </ol>
+          </div>
+
+          <div class="flex gap-3">
+            <div class="flex-1 bg-mint-50 rounded-xl p-3">
+              <p class="font-700 text-mint-600 text-xs uppercase mb-1">Materiais</p>
+              <p class="text-ink/70 font-600">${d.materials}</p>
+            </div>
+          </div>
+
+          <div class="bg-lilac-50 rounded-xl p-3">
+            <p class="font-700 text-lilac-500 text-xs uppercase mb-1">Benefício</p>
+            <p class="text-ink/70 font-600">${d.benefit}</p>
+          </div>
+
+          <button onclick="toggleDone(${d.idx})"
+            class="w-full py-3 rounded-xl font-display font-700 transition active:scale-[.98] ${
+              checked ? 'bg-mint-100 text-mint-600' : 'bg-gradient-to-r from-calm-500 to-mint-500 text-white shadow-soft'}">
+            ${checked ? '✓ Dia concluído (toque para desfazer)' : 'Marcar dia como concluído'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Marca/desmarca dia concluído
+function toggleDone(idx){
+  state.done[idx] = !state.done[idx];
+  saveState();
+  renderDays(state.currentPhase);
+  renderHome();
+  renderProgress();
+  // reabre o card que o usuário estava vendo
+  setTimeout(()=>{ const el=document.getElementById('day-'+idx); if(el) openCollapse(el); },50);
+}
+
+/* ---------- RENDER: FERRAMENTAS ---------- */
+function renderTools(){
+  const wrap = document.getElementById('toolsList');
+  wrap.innerHTML = TOOLS.map(g=>`
+    <div>
+      <p class="font-display font-700 text-ink mb-2 px-1">${g.group}</p>
+      <div class="space-y-2">
+        ${g.items.map(it=>`
+          <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+            <button onclick="toggleCollapse(this)" class="w-full flex items-center gap-3 p-4 text-left">
+              <span class="flex-1 font-display font-700 text-ink text-sm leading-snug">${it.title}</span>
+              <span class="chev text-ink/30 text-xl transition-transform">⌄</span>
+            </button>
+            <div class="collapse-body"><div class="px-4 pb-4 text-sm text-ink/70 font-600 leading-relaxed">${it.text}</div></div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+/* ---------- RENDER: PROGRESSO ---------- */
+function renderProgress(){
+  const done = countDone();
+  const pct = Math.round((done/TOTAL)*100);
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statLeft').textContent = TOTAL-done;
+  document.getElementById('statPct').textContent = pct+'%';
+  document.getElementById('statStreak').textContent = currentStreak();
+
+  // Mensagem encorajadora
+  const cheer = document.getElementById('progressCheer');
+  if(done===0) cheer.textContent = "Cada começo é um ato de amor. Vamos juntas?";
+  else if(done<7) cheer.textContent = "Que lindo começo! Continue, um dia de cada vez.";
+  else if(done<14) cheer.textContent = "Você está construindo calma todos os dias. Orgulho! 💜";
+  else if(done<21) cheer.textContent = "Reta final! Olha o quanto vocês já evoluíram.";
+  else cheer.textContent = "Vocês concluíram os 21 dias! Que jornada linda. 🌟";
+
+  // Barras por fase
+  const bars = document.getElementById('weekBars');
+  bars.innerHTML = PHASES.map((ph,pi)=>{
+    const idxs = DAYS.map((d,i)=>({d,i})).filter(o=>o.d.phase===pi).map(o=>o.i);
+    const dphase = idxs.filter(i=>state.done[i]).length;
+    const total = idxs.length;
+    const pp = Math.round((dphase/total)*100);
+    return `
+      <div>
+        <div class="flex justify-between text-xs font-700 text-ink/60 mb-1">
+          <span>${ph.name}</span><span>${dphase}/${total}</span>
+        </div>
+        <div class="h-3 rounded-full bg-${ph.color}-50 overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-${ph.color}-300 to-${ph.color}-500 transition-all duration-700" style="width:${pp}%"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+/* ---------- COLAPSAR / EXPANDIR CARDS ---------- */
+function toggleCollapse(btn){
+  const body = btn.nextElementSibling;
+  const chev = btn.querySelector('.chev');
+  const open = body.style.maxHeight && body.style.maxHeight !== '0px';
+  if(open){ body.style.maxHeight = '0px'; if(chev) chev.style.transform=''; }
+  else { body.style.maxHeight = body.scrollHeight + 'px'; if(chev) chev.style.transform='rotate(180deg)'; }
+}
+function openCollapse(card){
+  const btn = card.querySelector('button');
+  const body = btn.nextElementSibling;
+  const chev = btn.querySelector('.chev');
+  body.style.maxHeight = body.scrollHeight + 'px';
+  if(chev) chev.style.transform='rotate(180deg)';
+}
+
+/* ---------- RESET ---------- */
+function resetProgress(){
+  if(confirm('Tem certeza que deseja reiniciar todo o seu progresso? Esta ação não pode ser desfeita.')){
+    state = { done:{}, currentScreen:'progresso', currentPhase:0 };
+    saveState();
+    renderAll();
+  }
+}
+
+/* ---------- INICIALIZAÇÃO ---------- */
+function renderAll(){
+  renderHome();
+  renderLearn();
+  renderTools();
+  selectPhase(state.currentPhase || 0);
+  renderProgress();
+}
+renderAll();
+goScreen(state.currentScreen || 'inicio');
+</script>
+</body>
+</html>
